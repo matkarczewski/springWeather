@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7232dc4f12.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NH9VQQCGNZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NH9VQQCGNZ');
+    </script>
+    <title>Pogoda Gorzów - InfoGorzow.pl</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="weather-info">
+        <h1>Pogoda Gorzów</h1>
+        <p th:text="|${weather.getForecast().getForecastday().get(0).getDayNameValue()}, ${weather.getCurrentDate()}|"></p>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table info">
+                <thead>
+                <tr>
+                    <th class="wdate" scope="col">teraz</th>
+                    <th scope="col"><img th:src="|https:${weather.getCurrent().getCondition().getIcon()}|" alt="warunki pogodowe"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="temph" scope="row"><a href="./pogoda/charts">Temperatura</a></th>
+                    <td th:text="|${weather.getCurrent().getTempC()} &#186;C|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wiatr</th>
+                    <td th:text="|${weather.getCurrent().getWindKph()} km/h|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Ciśnienie</th>
+                    <td th:text="|${weather.getCurrent().getPressureMb()} hPa|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wilgotność</th>
+                    <td th:text="|${weather.getCurrent().getHumidity()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachmurzenie</th>
+                    <td th:text="|${weather.getCurrent().getCloud()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Opady</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(0).getDay().getTotalprecipMm()} mm|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wschód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(0).getAstro().getSunrise()}|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(0).getAstro().getSunset()}|"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table info">
+                <thead>
+                <tr>
+                    <th class="wdate" scope="col" th:text="${weather.getForecast().getForecastday().get(1).getDayNameValue()}"></th>
+                    <th scope="col"><img th:src="|https:${weather.getForecast().getForecastday().get(1).getDay().getCondition().getIcon()}|" alt="warunki pogodowe"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="temph" scope="row"><a href="./pogoda/charts">Temperatura</a></th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getDay().getMaxtempC()} &#186;C|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wiatr</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getDay().getMaxwindKph()} km/h|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Ciśnienie</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getHour().get(12).getPressureMb()} hPa|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wilgotność</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getDay().getAvghumidity()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachmurzenie</th>
+                    <td class="ccloud1" th:text="|${weather.getForecast().getForecastday().get(1).getHour().get(12).getCloud()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Opady</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getDay().getTotalprecipMm()} mm|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wschód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getAstro().getSunrise()}|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(1).getAstro().getSunset()}|"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table info">
+                <thead>
+                <tr>
+                    <th scope="col" class="wdate"  th:text="${weather.getForecast().getForecastday().get(2).getDayNameValue()}"></th>
+                    <th scope="col"><img th:src="|https:${weather.getForecast().getForecastday().get(2).getDay().getCondition().getIcon()}|" alt="warunki pogodowe"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="temph" scope="row"><a href="./pogoda/charts">Temperatura</a></th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getDay().getMaxtempC()} &#186;C|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wiatr</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getDay().getMaxwindKph()} km/h|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Ciśnienie</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getHour().get(12).getPressureMb()} hPa|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wilgotność</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getDay().getAvghumidity()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachmurzenie</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getHour().get(12).getCloud()} %|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Opady</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getDay().getTotalprecipMm()} mm|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Wschód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getAstro().getSunrise()}|"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Zachód słońca</th>
+                    <td th:text="|${weather.getForecast().getForecastday().get(2).getAstro().getSunset()}|"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer class="foot-info">
+    <p>
+        <a href="https://infogorzow.pl"><img src="/img/info-logo.png" alt="InfoGorzow.pl"></a>
+    </p>
+    <p>
+        Pogoda Gorzów - prognoza na 3 dni<br>
+        Zgłoś <a href="https://infogorzow.pl/kontakt/">błąd/uwagę</a><br>
+        API: <a href="https://www.weatherapi.com">Weatherapi.com</a>
+    </p>
+    <p>
+        Copyright © 2024 InfoGorzow.pl<br>
+        All rights reserved
+    </p>
+</footer>
+</body>
+</html>

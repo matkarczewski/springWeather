@@ -1,0 +1,70 @@
+:root {
+    font-size: 16px;
+}
+
+body {
+    background-image: url("../img/noise_lines.webp");
+    padding-top: 20px;
+}
+
+.weather-info {
+    text-align: center;
+    padding: 10px;
+}
+
+.weather-info > h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.wdate {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.col {
+    background-color: white;
+    border: 1px solid #008000;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.foot-info {
+    width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    color:darkgray;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.foot-info a:link, .foot-info a:visited {
+    color: darkgray;
+}
+
+.charts {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #008000;
+}
+
+.change-site {
+    padding-top: 5px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 90%;
+    }
+
+    .foot-info {
+        width: 80%;
+    }
+}
+
+
+
+
+

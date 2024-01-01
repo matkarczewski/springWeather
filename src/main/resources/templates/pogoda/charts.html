@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NH9VQQCGNZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NH9VQQCGNZ');
+    </script>
+    <title>Wykres temperatury - InfoGorzow.pl</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="weather-info">
+        <h1>Temperatura Gorzów</h1>
+        <p th:text="|${weather.getForecast().getForecastday().get(0).getDayNameValue()}, ${weather.getCurrentDate()}|"></p>
+    </div>
+
+    <div class="row">
+        <div class="charts col-sm-10 mx-auto">
+
+            <div id="chart"></div>
+
+        </div>
+    </div>
+
+    <div class="change-site"><a href="../"><< Pogoda</a></div>
+
+</div>
+<footer class="foot-info">
+    <p>
+        <a href="https://infogorzow.pl"><img src="/img/info-logo.png" alt="InfoGorzow.pl"></a>
+    </p>
+    <p>
+        Pogoda Gorzów - prognoza na 3 dni<br>
+        Zgłoś <a href="https://infogorzow.pl/kontakt/">błąd/uwagę</a><br>
+        API: <a href="https://www.weatherapi.com">Weatherapi.com</a>
+    </p>
+    <p>
+        Copyright © 2024 InfoGorzow.pl<br>
+        All rights reserved
+    </p>
+</footer>
+
+<script th:inline="javascript">
+    const forecastDay0 = [[${weather.getForecast().getForecastday().get(0)}]];
+    const forecastDay1 = [[${weather.getForecast().getForecastday().get(1)}]];
+    const forecastDay2 = [[${weather.getForecast().getForecastday().get(2)}]];
+    const currentDate = [[${weather.getLocation().getLocaltimeEpoch()}]];
+</script>
+
+<script type="text/javascript" th:src="@{/js/charts.js}"></script>
+
+</body>
+</html>
